@@ -5,15 +5,19 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "test": "vitest"
   },
   "devDependencies": {
+    "@vue/test-utils": "^2.3.1",
     "nuxt": "^3.3.1",
+    "nuxt-vitest": "^0.6.8",
     "sass": "^1.59.3",
     "sass-loader": "^13.2.1"
   },
   "dependencies": {
     "gsap": "^3.11.5",
+    "vitest": "^0.29.7",
     "web3": "^1.8.2"
   }
 }

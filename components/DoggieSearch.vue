@@ -22,7 +22,7 @@
       <button
         class="doggie-search__search-bar__neon-button"
         v-if="connected"
-        :disabled="!query"
+        :disabled="query === undefined || query === null || query === ''"
         @click="searchDoggieById"
       >
         Search
@@ -148,7 +148,6 @@ export default {
       const owner = await contract.methods.ownerOf(this.query).call();
       this.owner = owner;
       const result = await contract.methods.tokenURI(this.query).call();
-      console.log(result);
       const response = await fetch(result);
       this.contractResult = await response.json();
     },
@@ -167,7 +166,7 @@ export default {
     imposeMinMax() {
       if (this.query != "") {
         if (parseInt(this.query) < parseInt(0)) {
-          this.query = 1;
+          this.query = 0;
         }
         if (parseInt(this.query) > parseInt(9999)) {
           this.query = 9999;
