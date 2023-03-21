@@ -27,6 +27,7 @@
       >
         Search
       </button>
+      <Dice @roll="searchRandomDoggie" v-if="connected" />
     </div>
     <div class="doggie-search__search-result" v-if="contractResult">
       <div class="doggie-search__search-result__image-container">
@@ -78,12 +79,16 @@
 
 <script>
 import Web3 from "web3";
+import Dice from "@/components/Dice.vue";
 import gsap from "gsap";
 import abi from "@/abi.json";
 
 export default {
   name: "nft",
   layout: "default",
+  components: {
+    Dice,
+  },
   beforeMount() {
     gsap.set("#search", {
       position: "absolute",
@@ -149,6 +154,15 @@ export default {
     },
     switchToIframe() {
       this.showIframe = !this.showIframe;
+    },
+    getRandomInt: function (min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min) + min);
+    },
+    searchRandomDoggie() {
+      this.query = this.getRandomInt(0, 9999);
+      this.searchDoggieById();
     },
     imposeMinMax() {
       if (this.query != "") {
