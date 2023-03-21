@@ -8,12 +8,17 @@
           ${getRandomInt(10, 30)}`"
       ></span>
     </div>
+    <DoggieSearch />
   </div>
 </template>
 
 <script>
+import DoggieSearch from "@/components/DoggieSearch.vue";
 export default {
-  name: "Index",
+  name: "App",
+  components: {
+    DoggieSearch,
+  },
   methods: {
     getRandomInt: function (min, max) {
       min = Math.ceil(min);
@@ -39,10 +44,11 @@ export default {
       position: relative;
       width: 30px;
       height: 30px;
-      background: #cf03ce;
+      background: var(--clr-magenta);
       margin: 0 4px;
       border-radius: 50%;
-      box-shadow: 0 0 0 10px #cf03cf45, 0 0 50px #cf03ce, 0 0 100px #cf03ce;
+      box-shadow: 0 0 0 10px #cf03cf45, 0 0 50px var(--clr-magenta),
+        0 0 100px var(--clr-magenta);
       animation: animate 15s linear infinite;
       animation-duration: calc(125s / var(--i));
     }
